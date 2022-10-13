@@ -1,9 +1,11 @@
+import 'package:booknote/model/model_data.dart';
 import 'package:fab_circular_menu/fab_circular_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:pemogramanmobile_uts/addBookScreen.dart';
-import 'package:pemogramanmobile_uts/detailScreen.dart';
 
-import 'book.dart';
+import '../model/book.dart';
+import '../widget.dart/customListView.dart';
+import 'addBookScreen.dart';
+import 'detailScreen.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -18,78 +20,6 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     //custom widget
     var heightScreen = MediaQuery.of(context).size.height;
-    var CustomListView = Expanded(
-      child: ListView.builder(
-          itemCount: bookList.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return DetailScreen(buku: bookList[index]);
-                }));
-              },
-              child: Card(
-                color: bookList[index].warna,
-                child: Padding(
-                  padding: EdgeInsets.all(20),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Hero(
-                        tag: "fotobuku ${bookList[index].judul}",
-                        child: Material(
-                          elevation: 10,
-                          //shadowColor: Colors.black,
-                          child: Image.asset(
-                            bookList[index].gambar,
-                            height: 150,
-                            fit: BoxFit.fitHeight,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Expanded(
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              bookList[index].judul,
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.black,
-                                fontSize: 18,
-                              ),
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              bookList[index].penulis,
-                              style: TextStyle(
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                                fontSize: 12,
-                              ),
-                            ),
-                            Chip(
-                              label: Text(bookList[index].genre,
-                                  style: TextStyle(fontSize: 10)),
-                              backgroundColor: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            );
-          }),
-    );
 
     //MaterialApp
     return Scaffold(
@@ -146,7 +76,7 @@ class _HomeState extends State<Home> {
                   SizedBox(
                     height: 35,
                   ),
-                  CustomListView,
+                  CustomListView(getBookModel()),
                 ],
               ),
             ),

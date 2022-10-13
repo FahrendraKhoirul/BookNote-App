@@ -1,9 +1,10 @@
+import 'package:booknote/model/model_data.dart';
 import 'package:flutter/material.dart';
-import 'book.dart';
+import '../model/book.dart';
 
 class DetailScreen extends StatelessWidget {
   //variabel
-  final Book buku;
+  final BookModel buku;
 
   //constructor
   DetailScreen({required this.buku});
@@ -11,14 +12,14 @@ class DetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: buku.warna,
+      backgroundColor: Color(buku.warna),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             children: [
               Stack(children: [
                 Container(
-                  color: buku.warna,
+                  color: Color(buku.warna),
                   height: 240,
                   width: MediaQuery.of(context).size.width,
                 ),

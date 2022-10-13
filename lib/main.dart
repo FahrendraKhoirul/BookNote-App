@@ -1,7 +1,14 @@
+import 'package:booknote/model/model_data.dart';
+import 'package:booknote/view/home.dart';
 import 'package:flutter/material.dart';
-import 'home.dart';
+import 'package:hive_flutter/adapters.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  //init hive database
+  await Hive.initFlutter();
+  Hive.registerAdapter(BookModelAdapter());
+  await Hive.openBox('booknote');
   runApp(MyApp());
 }
 
