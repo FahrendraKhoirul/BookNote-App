@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "448544216810",
+    "project_id": "booknoteapp-d5100",
+    "storage_bucket": "booknoteapp-d5100.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448544216810:android:ceaaaec4a76f5c8dc8e993",
+        "android_client_info": {
+          "package_name": "com.example.pemogramanmobile_uts"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448544216810-ms1fv6ubof3lkj0ild60m6lu7vsc4bvn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBq8lcsBP_a6DrPT4I_Zq8o8JU92ozeoxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448544216810-ms1fv6ubof3lkj0ild60m6lu7vsc4bvn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

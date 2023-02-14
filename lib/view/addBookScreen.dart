@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:booknote/model/booksModel.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
@@ -206,27 +207,15 @@ class _AddBookScreenState extends State<AddBookScreen> {
                       ),
                     ),
                     CustomTextFormField("name", _controllerAuthor, "1"),
-                    Row(
-                      children: [
-                        Text(
-                          "Tags",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black,
-                            fontSize: 17,
-                          ),
-                        ),
-                        Text(
-                          "  (Serparated by comma ',' )",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black45,
-                            fontSize: 17,
-                          ),
-                        ),
-                      ],
+                    Text(
+                      "Genre",
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                        color: Colors.black,
+                        fontSize: 17,
+                      ),
                     ),
-                    CustomTextFormField("tags", _controllerTags, "1"),
+                    CustomTextFormField("genre", _controllerTags, "1"),
                     SizedBox(
                       height: 10,
                     ),
@@ -277,6 +266,30 @@ class _AddBookScreenState extends State<AddBookScreen> {
       child: InkWell(
         onTap: () {
           if (text == "Add Book") {
+            //check if all fields are filled
+            if (_controllerTitle.text == "" ||
+                _controllerAuthor.text == "" ||
+                _controllerTags.text == "") {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Please fill all fields"),
+                backgroundColor: Colors.red,
+              ));
+              return;
+            } else {
+              addBook(
+                  _controllerTitle.text,
+                  _controllerAuthor.text,
+                  _controllerTags.text,
+                  backgroundCover.value.toString(),
+                  "",
+                  USERID);
+              Navigator.pop(context);
+              //snackbar  book added
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text("Book added"),
+                backgroundColor: Colors.green,
+              ));
+            }
           } else if (text == "Pick Color") {
             pickColor(context);
           } else if (text == "Choose Image") {

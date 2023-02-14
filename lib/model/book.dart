@@ -187,3 +187,66 @@
 //         "Jangan terlalu percaya dengan ucapan orang lain. Jika memang perlu melakukan sesuatu, maka lakukan. Persetan omongan orang-orang. "
 //       ]),
 // ];
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+
+class Book {
+  String? id;
+  String? image;
+  List<String>? notes;
+  String? color;
+  String? author;
+  String? genre;
+  String? title;
+
+  Book(
+      {this.id,
+      this.image,
+      this.notes,
+      this.color,
+      this.author,
+      this.genre,
+      this.title});
+
+  Book.fromJson(Map<String, dynamic> json) {
+    image = json['image'];
+    notes = json['notes'].cast<String>();
+    color = json['color'];
+    author = json['author'];
+    genre = json['genre'];
+    title = json['title'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['image'] = this.image;
+    data['notes'] = this.notes;
+    data['color'] = this.color;
+    data['author'] = this.author;
+    data['genre'] = this.genre;
+    data['title'] = this.title;
+    return data;
+  }
+
+  //create method form querydocumentSnapshot
+  Book.fromDocumentSnapshot({required DocumentSnapshot documentSnapshot}) {
+    id = documentSnapshot.id;
+    image = documentSnapshot['image'];
+    notes = documentSnapshot['notes'].cast<String>();
+    color = documentSnapshot['color'];
+    author = documentSnapshot['author'];
+    genre = documentSnapshot['genre'];
+    title = documentSnapshot['title'];
+  }
+
+  //create method form querydocumentSnapshot
+  Book.fromMap(Map<String, dynamic>? map) {
+    id = map?['id'];
+    image = map?['image'];
+    notes = map?['notes'].cast<String>();
+    color = map?['color'];
+    author = map?['author'];
+    genre = map?['genre'];
+    title = map?['title'];
+  }
+}
