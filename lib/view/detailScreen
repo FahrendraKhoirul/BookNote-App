@@ -1,5 +1,4 @@
 import 'package:booknote/model/book.dart';
-import 'package:booknote/model/model_data.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -52,7 +51,7 @@ class DetailScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Hero(
-                            tag: "fotobuku ${buku.judul}",
+                            tag: "fotobuku ${buku.title}",
                             child: Material(
                               elevation: 10,
                               //shadowColor: Colors.black,
