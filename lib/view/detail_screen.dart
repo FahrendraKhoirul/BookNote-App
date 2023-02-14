@@ -186,20 +186,6 @@ class Details extends StatelessWidget {
     );
   }
 
-  Widget BtnAction(IconData icon) {
-    return Container(
-      width: 30,
-      height: 30,
-      decoration: BoxDecoration(
-          color: Color(0xFFFDE08A), borderRadius: BorderRadius.circular(20)),
-      child: Icon(
-        icon,
-        color: white,
-        size: 18,
-      ),
-    );
-  }
-
   Widget ResumeText() {
     return Padding(
       padding: const EdgeInsets.only(left: 40, right: 40, bottom: 20),
@@ -210,4 +196,18 @@ class Details extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget BtnAction(IconData icon) {
+  return Container(
+    width: 30,
+    height: 30,
+    decoration: BoxDecoration(
+        color: Color(0xFFFDE08A), borderRadius: BorderRadius.circular(20)),
+    child: Icon(
+      icon,
+      color: white,
+      size: 18,
+    ),
+  );
 }
