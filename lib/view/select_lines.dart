@@ -2,8 +2,15 @@ import 'package:booknote/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:booknote/view/detail_screen.dart';
 
-class MaximizeDetail extends StatelessWidget {
-  const MaximizeDetail({Key? key}) : super(key: key);
+class SelectLines extends StatefulWidget {
+  const SelectLines({Key? key}) : super(key: key);
+
+  @override
+  State<SelectLines> createState() => _SelectLinesState();
+}
+
+class _SelectLinesState extends State<SelectLines> {
+  bool selected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class MaximizeDetail extends StatelessWidget {
               SizedBox(height: defaultPadding / 2),
               Center(
                 child: Text(
-                  "Goodbye, Things",
+                  "Select Lines",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: semiBlack,
@@ -31,7 +38,7 @@ class MaximizeDetail extends StatelessWidget {
               SizedBox(height: defaultPadding / 4),
               Center(
                 child: Text(
-                  "Anonymous",
+                  "0" + "lines selected",
                   style: TextStyle(
                     color: lightGrey,
                     fontSize: 18,
@@ -48,33 +55,47 @@ class MaximizeDetail extends StatelessWidget {
                     return ResumeLines();
                   },
                 ),
-              )
+              ),
             ],
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        shape: BeveledRectangleBorder(borderRadius: BorderRadius.circular(5)),
-        backgroundColor: lightOrange,
-        child: Icon(
-          Icons.add,
-          color: white,
-          size: 30,
+    );
+  }
+
+  Widget ResumeLines() {
+    return Padding(
+      padding: const EdgeInsets.only(
+          left: defaultPadding / 2,
+          right: defaultPadding / 2,
+          bottom: defaultPadding),
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            if (selected == false) {
+              selected = true;
+            } else {
+              selected = false;
+            }
+          });
+        },
+        child: Material(
+          color: selected ? lightOrange : extraLightOrange,
+          borderRadius: BorderRadius.circular(10),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(
+                horizontal: defaultPadding, vertical: defaultPadding / 2),
+            child: Text(
+              "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+              textAlign: TextAlign.justify,
+              style: TextStyle(
+                  height: 1.5,
+                  fontSize: 16,
+                  color: selected ? white : darkOrange),
+            ),
+          ),
         ),
       ),
     );
   }
-}
-
-Widget ResumeLines() {
-  return Padding(
-    padding: const EdgeInsets.only(
-        left: defaultPadding, right: defaultPadding, bottom: defaultPadding),
-    child: Text(
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-      textAlign: TextAlign.justify,
-      style: TextStyle(height: 1.5, fontSize: 16, color: semiBlack),
-    ),
-  );
 }
