@@ -1,8 +1,5 @@
 // import 'package:booknote/model/model_data.dart';
 import 'package:booknote/view/detail_screen.dart';
-import 'package:booknote/view/home_screen.dart';
-import 'package:booknote/view/maximize_detail.dart';
-import 'package:booknote/view/select_lines.dart';
 import 'package:flutter/material.dart';
 // import 'package:hive_flutter/adapters.dart';
 
@@ -18,7 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: "Raleway"),
-      home: SelectLines(),
+      home: Details(),
     );
   }
 }

@@ -1,4 +1,5 @@
 import 'package:booknote/constants.dart';
+import 'package:booknote/view/share_lines.dart';
 import 'package:flutter/material.dart';
 import 'package:booknote/view/detail_screen.dart';
 
@@ -54,6 +55,36 @@ class _SelectLinesState extends State<SelectLines> {
                   itemBuilder: (context, index) {
                     return ResumeLines();
                   },
+                ),
+              ),
+              SizedBox(
+                height: defaultPadding,
+              ),
+              Center(
+                child: SizedBox(
+                  height: 50,
+                  width: 140,
+                  child: ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ShareLines()));
+                    },
+                    child: Text(
+                      "Continue",
+                      style: TextStyle(
+                          color: white,
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        primary: semiBlack,
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                        )),
+                  ),
                 ),
               ),
             ],

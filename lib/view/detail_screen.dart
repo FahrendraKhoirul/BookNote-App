@@ -1,15 +1,97 @@
 import 'package:booknote/constants.dart';
+import 'package:booknote/view/maximize_detail.dart';
+import 'package:booknote/view/select_lines.dart';
 import 'package:flutter/material.dart';
 
-class Details extends StatelessWidget {
+class Details extends StatefulWidget {
   const Details({Key? key}) : super(key: key);
+
+  @override
+  State<Details> createState() => _DetailsState();
+}
+
+class _DetailsState extends State<Details> {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: lightOrange,
+      key: navigatorKey,
       body: Column(
-        children: [DetailCover(), ResumeCard()],
+        children: [
+          DetailCover(),
+          Flexible(
+            child: Container(
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30)),
+              ),
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(
+                        left: 20, right: 20, top: 30, bottom: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        BtnAction(Icons.edit),
+                        SizedBox(
+                          width: defaultPadding / 3,
+                        ),
+                        InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => SelectLines()));
+                            },
+                            child: BtnAction(Icons.share)),
+                        SizedBox(width: defaultPadding / 3),
+                        InkWell(
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  PageRouteBuilder(
+                                    transitionDuration: Duration(seconds: 1),
+                                    transitionsBuilder: (context, animation,
+                                        animationTime, child) {
+                                      animation = CurvedAnimation(
+                                          parent: animation,
+                                          curve: Curves.elasticInOut);
+                                      return ScaleTransition(
+                                        alignment: Alignment.center,
+                                        scale: animation,
+                                        child: child,
+                                      );
+                                    },
+                                    pageBuilder: (context, animation,
+                                        secondaryAnimation) {
+                                      return MaximizeDetail();
+                                    },
+                                  ));
+                            },
+                            child: BtnAction(Icons.fullscreen))
+                      ],
+                    ),
+                  ),
+                  Container(
+                    height: 300,
+                    child: ListView.builder(
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        return ResumeText();
+                      },
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
@@ -140,48 +222,6 @@ class Details extends StatelessWidget {
             ),
           )
         ],
-      ),
-    );
-  }
-
-  Widget ResumeCard() {
-    return Flexible(
-      child: Container(
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: white,
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(30), topRight: Radius.circular(30)),
-        ),
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, right: 20, top: 30, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  BtnAction(Icons.edit),
-                  SizedBox(
-                    width: defaultPadding / 3,
-                  ),
-                  BtnAction(Icons.share),
-                  SizedBox(width: defaultPadding / 3),
-                  BtnAction(Icons.fullscreen)
-                ],
-              ),
-            ),
-            Container(
-              height: 300,
-              child: ListView.builder(
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  return ResumeText();
-                },
-              ),
-            )
-          ],
-        ),
       ),
     );
   }

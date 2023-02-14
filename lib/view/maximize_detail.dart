@@ -16,7 +16,29 @@ class MaximizeDetail extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              BtnAction(Icons.keyboard_arrow_down),
+              InkWell(
+                  onTap: () {
+                    Navigator.pop(
+                        context,
+                        PageRouteBuilder(
+                          transitionDuration: Duration(seconds: 1),
+                          transitionsBuilder:
+                              (context, animation, animationTime, child) {
+                            animation = CurvedAnimation(
+                                parent: animation, curve: Curves.elasticOut);
+                            return ScaleTransition(
+                              alignment: Alignment.center,
+                              scale: animation,
+                              child: child,
+                            );
+                          },
+                          pageBuilder:
+                              (context, animation, secondaryAnimation) {
+                            return Details();
+                          },
+                        ));
+                  },
+                  child: BtnAction(Icons.keyboard_arrow_down)),
               SizedBox(height: defaultPadding / 2),
               Center(
                 child: Text(

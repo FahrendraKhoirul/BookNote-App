@@ -50,7 +50,14 @@ class _ShopState extends State<Shop> {
                     crossAxisSpacing: defaultPadding / 2,
                     childAspectRatio: 0.6),
                 itemBuilder: (context, index) {
-                  return Catalog();
+                  return InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Description()));
+                      },
+                      child: Catalog());
                 },
               )
             ],

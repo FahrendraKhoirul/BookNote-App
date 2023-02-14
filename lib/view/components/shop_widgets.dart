@@ -1,34 +1,37 @@
 import 'package:booknote/constants.dart';
 import 'package:flutter/material.dart';
 
-Widget Catalog() { // Grid item di shop
-  return Column(
-    children: [
-      Container(
-        height: 250,
-        width: 170,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/rich dad, poor dad.png"),
-              fit: BoxFit.cover),
-        ),
-      ),
-      Padding(
-        padding: const EdgeInsets.symmetric(vertical: defaultPadding / 3),
-        child: Text(
-          "Rich Dad, Poor Dad",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
+Widget Catalog() {
+  // Grid item di shop
+  return Center(
+    child: Column(
+      children: [
+        Container(
+          height: 250,
+          width: 170,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("assets/images/rich dad, poor dad.png"),
+                fit: BoxFit.cover),
           ),
         ),
-      ),
-      Text(
-        "Anonymous",
-        style: TextStyle(
-          color: lightGrey,
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: defaultPadding / 3),
+          child: Text(
+            "Rich Dad, Poor Dad",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
-      )
-    ],
+        Text(
+          "Anonymous",
+          style: TextStyle(
+            color: lightGrey,
+          ),
+        )
+      ],
+    ),
   );
 }
 
